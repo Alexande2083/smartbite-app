@@ -8,40 +8,18 @@ import Store from './pages/Store.jsx';
 import Fasting from './pages/Fasting.jsx';
 import Settings from './pages/Settings.jsx';
 
-const TOP_BAR = {
-  home: {
-    left: '📅 5月6日·周三',
-    right: <>
-      <span>🔥</span>
-      <span style={{ color: '#FF6B35', fontWeight: 700 }}>+250</span>
-      <span style={{ background: '#FF6B35', color: 'white', fontSize: 10, padding: '2px 8px', borderRadius: 10, fontWeight: 600 }}>🏆×5</span>
-    </>
-  },
-  camera: {
-    left: '📷 拍照识别',
-    right: <span style={{ fontSize: 12, cursor: 'pointer' }} onClick={() => alert('相册选择')}>🖼️ 相册</span>
-  },
-  chat: {
-    left: '🤖 AI健康助手',
-    right: null
-  },
-  body: {
-    left: '📈 身体数据',
-    right: <span style={{ fontSize: 12, cursor: 'pointer' }} onClick={() => alert('同步中…')}>🔄 同步</span>
-  },
-  store: {
-    left: '🏪 便利店助手',
-    right: null
-  },
-  fasting: {
-    left: '⏳ 轻断食',
-    right: <span style={{ fontSize: 12, color: '#FF4757' }}>🔴 禁食中</span>
-  },
-  settings: {
-    left: '👤 我的',
-    right: null
-  }
-};
+function getTopBar(page) {
+  const bars = {
+    home: { left: '📅 5月6日·周三' },
+    camera: { left: '📷 拍照识别', rightAction: () => alert('相册选择'), rightLabel: '🖼️ 相册' },
+    chat: { left: '🤖 AI健康助手' },
+    body: { left: '📈 身体数据', rightAction: () => alert('同步中…'), rightLabel: '🔄 同步' },
+    store: { left: '🏪 便利店助手' },
+    fasting: { left: '⏳ 轻断食', rightLabel: '🔴 禁食中', rightColor: '#FF4757' },
+    settings: { left: '👤 我的' },
+  };
+  return bars[page] || bars.home;
+}
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -50,7 +28,18 @@ export default function App() {
   const [showStoreRanks, setShowStoreRanks] = useState(false);
 
   const page = showFasting ? 'fasting' : activeTab;
-  const topBar = TOP_BAR[page] || TOP_BAR.home;
+  const bar = getTopBar(page);
+
+  const rightContent = bar.rightAction ? (
+    <span style={{ fontSize: 12, cursor: 'pointer', color: bar.rightColor || '#6C757D' }} onClick={bar.rightAction}>
+      {bar.rightLabel}
+    </span>
+  ) : page === 'home' ? (
+    <><span>🔥</span><span style={{ color: '#FF6B35', fontWeight: 700 }}>+250</span>
+    <span style={{ background: '#FF6B35', color: 'white', fontSize: 10, padding: '2px 8px', borderRadius: 10, fontWeight: 600 }}>🏆×5</span></>
+  ) : bar.rightLabel ? (
+    <span style={{ fontSize: 12, color: bar.rightColor || '#6C757D' }}>{bar.rightLabel}</span>
+  ) : null;
 
   const handleTabChange = useCallback((tab) => {
     setActiveTab(tab);
@@ -131,10 +120,10 @@ export default function App() {
             <span style={{ fontSize: 22, cursor: 'pointer', marginRight: 4 }}
               onClick={page === 'fasting' ? handleBackFromFasting : handleBackFromStoreRanks}>←</span>
           )}
-          {topBar.left}
+          {bar.left}
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 13, color: '#6C757D' }}>
-          {topBar.right}
+          {rightContent}
         </div>
       </div>
 
