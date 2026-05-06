@@ -1,0 +1,44 @@
+.container { animation: fadeIn 0.3s; }
+.hint { font-size: 13px; color: #6C757D; margin-bottom: 12px; }
+.brandBtn {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  border-radius: 14px; background: #FFF; border: 1px solid #EEE;
+  margin-bottom: 8px; cursor: pointer; transition: 0.15s;
+  width: 100%; font-family: inherit; font-size: 14px; text-align: left;
+}
+.brandBtn:active { transform: scale(0.98); border-color: #FF6B35; }
+.brandIcon { font-size: 28px; }
+.brandName { font-weight: 600; }
+.brandSub { font-size: 12px; color: #6C757D; margin-top: 2px; }
+.divider { margin: 16px 0; }
+.dividerLabel { font-size: 13px; color: #6C757D; margin-bottom: 8px; }
+.orderRow { display: flex; gap: 8px; }
+.orderInput {
+  flex: 1; padding: 12px 14px; border-radius: 12px; border: 1px solid #EEE;
+  font-size: 13px; outline: none; font-family: inherit;
+}
+.parseBtn {
+  padding: 12px 20px; border-radius: 14px; background: #FF6B35; color: white;
+  border: none; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit;
+}
+.parseBtn:active { transform: scale(0.98); }
+
+.rankCard {
+  padding: 12px 16px; border-radius: 14px; margin-bottom: 8px;
+  display: flex; gap: 12px; align-items: center; cursor: pointer; transition: 0.15s;
+}
+.rankCard:active { transform: scale(0.98); }
+.rankGreen { background: #E8F8F5; border-left: 4px solid #00B894; }
+.rankYellow { background: #FFF8E1; border-left: 4px solid #FFC107; }
+.rankRed { background: #FFEAEA; border-left: 4px solid #FF4757; }
+.rankIcon { font-size: 24px; }
+.rankInfo { flex: 1; }
+.rankName { font-size: 14px; font-weight: 600; }
+.rankSub { font-size: 12px; color: #6C757D; margin-top: 2px; }
+.rankCal { font-size: 15px; font-weight: 700; }
+.rankTag { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 600; display: inline-block; margin-top: 4px; }
+.tagGreen { background: #00B894; color: white; }
+.tagYellow { background: #FFC107; color: #1A1A2E; }
+.tagRed { background: #FF4757; color: white; }
+.backLink { margin-top: 8px; cursor: pointer; font-size: 12px; color: #6C757D; }
+@keyframes fadeIn { from { opacity: 0.3; } to { opacity: 1; } }
